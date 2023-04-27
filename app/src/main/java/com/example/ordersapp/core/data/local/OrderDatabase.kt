@@ -17,4 +17,7 @@ import com.example.ordersapp.core.data.local.entities.ProductEntity
     version = 1
 )
 abstract class OrderDatabase : RoomDatabase() {
+    abstract fun orderDao(): OrderDao
+    abstract fun productDao(): ProductDao
+    abstract fun delivererDao(): DelivererDao
 }
