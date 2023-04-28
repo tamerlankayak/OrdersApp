@@ -8,6 +8,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ordersapp.order_feature.presentation.domain.model.Order
+import com.example.ordersapp.order_feature.presentation.domain.repository.OrderRepository
 import com.example.ordersapp.order_feature.presentation.mapper.toOrderDetailListItem
 import com.example.ordersapp.order_feature.presentation.mapper.toOrderListItem
 import com.example.ordersapp.order_feature.presentation.state.OrderDetailListItem
@@ -21,7 +22,7 @@ import javax.inject.Inject
 @RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class OrderViewModel @Inject constructor(
-
+    private val orderRepository: OrderRepository
 ) : ViewModel() {
 
     private lateinit var orders: List<Order>
@@ -37,7 +38,7 @@ class OrderViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            //orders=
+            orders = orderRepository.getOrders()
             setupOrderList()
         }
     }
