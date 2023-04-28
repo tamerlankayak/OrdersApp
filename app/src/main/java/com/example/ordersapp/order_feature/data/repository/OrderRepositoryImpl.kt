@@ -10,8 +10,8 @@ import com.example.ordersapp.core.domain.model.Deliverer
 import com.example.ordersapp.core.domain.model.Product
 import com.example.ordersapp.order_feature.data.mapper.toOrder
 import com.example.ordersapp.order_feature.data.mapper.toOrderEntity
-import com.example.ordersapp.order_feature.presentation.domain.model.Order
-import com.example.ordersapp.order_feature.presentation.domain.repository.OrderRepository
+import com.example.ordersapp.order_feature.domain.model.Order
+import com.example.ordersapp.order_feature.domain.repository.OrderRepository
 import javax.inject.Inject
 
 class OrderRepositoryImpl @Inject constructor(

@@ -7,8 +7,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ordersapp.order_feature.presentation.domain.model.Order
-import com.example.ordersapp.order_feature.presentation.domain.repository.OrderRepository
+import com.example.ordersapp.order_feature.domain.model.BoughtProducts
+import com.example.ordersapp.order_feature.domain.model.Order
+import com.example.ordersapp.order_feature.domain.repository.OrderRepository
 import com.example.ordersapp.order_feature.presentation.mapper.toOrderDetailListItem
 import com.example.ordersapp.order_feature.presentation.mapper.toOrderListItem
 import com.example.ordersapp.order_feature.presentation.state.OrderDetailListItem
@@ -38,8 +39,22 @@ class OrderViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            orders = orderRepository.getOrders()
-            setupOrderList()
+//            orders = orderRepository.getOrders()
+//            setupOrderList()
+            orderRepository.insertOrder(
+            Order(
+                "1",
+                "2022.10.15 12:05:12",
+                delivererTime = "As fast as possible",
+                "Paper Factory Ltd",
+                listOf(
+                    BoughtProducts("1",
+                    "Note book",
+                    1.23f,
+                    2)
+                )
+            )
+        )
         }
     }
 

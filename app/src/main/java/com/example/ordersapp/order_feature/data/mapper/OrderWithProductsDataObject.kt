@@ -1,8 +1,8 @@
 package com.example.ordersapp.order_feature.data.mapper
 
 import com.example.ordersapp.core.data.local.entities.OrderWithProductsDataObject
-import com.example.ordersapp.order_feature.presentation.domain.model.BoughtProducts
-import com.example.ordersapp.order_feature.presentation.domain.model.Order
+import com.example.ordersapp.order_feature.domain.model.BoughtProducts
+import com.example.ordersapp.order_feature.domain.model.Order
 
 fun OrderWithProductsDataObject.toOrder(): Order {
     return Order(

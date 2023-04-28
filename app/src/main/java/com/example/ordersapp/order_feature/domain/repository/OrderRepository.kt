@@ -1,8 +1,8 @@
-package com.example.ordersapp.order_feature.presentation.domain.repository
+package com.example.ordersapp.order_feature.domain.repository
 
 import com.example.ordersapp.core.domain.model.Deliverer
 import com.example.ordersapp.core.domain.model.Product
-import com.example.ordersapp.order_feature.presentation.domain.model.Order
+import com.example.ordersapp.order_feature.domain.model.Order
 
 interface OrderRepository {
 
