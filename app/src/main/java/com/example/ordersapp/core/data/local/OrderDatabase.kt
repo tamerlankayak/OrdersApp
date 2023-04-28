@@ -12,7 +12,7 @@ import com.example.ordersapp.core.data.local.entities.ProductEntity
         DelivererEntity::class,
         OrderEntity::class,
         OrderProductEntity::class,
-        ProductEntity::class
+        ProductEntity::class,
     ],
     version = 1
 )
