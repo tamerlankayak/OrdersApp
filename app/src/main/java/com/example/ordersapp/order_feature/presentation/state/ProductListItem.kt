@@ -8,4 +8,4 @@ data class ProductListItem(
     val pricePerAmount: Float,
     val selectedAmount: Int,
     val isExpanded: Boolean
-) {}
+)

@@ -1,6 +1,6 @@
 package com.example.ordersapp.order_feature.presentation.mapper
 
-import com.example.ordersapp.core.domain.model.Order
+import com.example.ordersapp.order_feature.presentation.domain.model.Order
 import com.example.ordersapp.order_feature.presentation.state.OrderDetailListItem
 import com.example.ordersapp.order_feature.presentation.state.OrderListItem
 

@@ -1,4 +1,4 @@
-package com.example.ordersapp.core.domain.model
+package com.example.ordersapp.order_feature.presentation.domain.model
 
 data class BoughtProducts(
     val productId: String,

@@ -7,7 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ordersapp.core.domain.model.Order
+import com.example.ordersapp.order_feature.presentation.domain.model.Order
 import com.example.ordersapp.order_feature.presentation.mapper.toOrderDetailListItem
 import com.example.ordersapp.order_feature.presentation.mapper.toOrderListItem
 import com.example.ordersapp.order_feature.presentation.state.OrderDetailListItem
