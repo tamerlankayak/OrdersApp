@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.ordersapp.core.presentation.ScreenRoutes
+import com.example.ordersapp.order_feature.components.OrderDetailDialog
 import com.example.ordersapp.order_feature.components.OrderUiListItem
 import com.example.ordersapp.ui.theme.gray
 import com.example.ordersapp.ui.theme.orange
@@ -109,5 +110,11 @@ fun OrderScreen(
                 }
             }
         }
+    }
+
+    if (orderViewModel.isOrderDialogShown && orderViewModel.clickedOrderItem != null) {
+        OrderDetailDialog(onDismiss = {
+            orderViewModel.onDismissOrderDialog()
+        }, orderDetailListItem = orderViewModel.clickedOrderItem!!)
     }
 }
