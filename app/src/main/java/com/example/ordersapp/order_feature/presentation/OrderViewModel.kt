@@ -39,22 +39,22 @@ class OrderViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-//            orders = orderRepository.getOrders()
-//            setupOrderList()
-            orderRepository.insertOrder(
-            Order(
-                "1",
-                "2022.10.15 12:05:12",
-                delivererTime = "As fast as possible",
-                "Paper Factory Ltd",
-                listOf(
-                    BoughtProducts("1",
-                    "Note book",
-                    1.23f,
-                    2)
-                )
-            )
-        )
+            orders = orderRepository.getOrders()
+            setupOrderList()
+//            orderRepository.insertOrder(
+//            Order(
+//                "1",
+//                "2022.10.15 12:05:12",
+//                delivererTime = "As fast as possible",
+//                "Paper Factory Ltd",
+//                listOf(
+//                    BoughtProducts("1",
+//                    "Note book",
+//                    1.23f,
+//                    2)
+//                )
+//            )
+//        )
         }
     }
 

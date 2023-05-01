@@ -14,18 +14,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,21 +36,23 @@ import com.example.ordersapp.ui.theme.orange
 import com.example.ordersapp.ui.theme.white
 
 @RequiresApi(Build.VERSION_CODES.O)
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun OrderScreen(
     navController: NavController,
     orderViewModel: OrderViewModel = hiltViewModel()
 ) {
-    val snackbarHostState = remember { SnackbarHostState() }
+
+    val scaffoldState = rememberScaffoldState()
 
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) },
+        scaffoldState = scaffoldState,
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate(ScreenRoutes.OrderChooseDelivererScreen.route) },
-                modifier = Modifier.background(orange)
+                onClick = {
+                    navController.navigate(ScreenRoutes.OrderChooseDelivererScreen.route)
+                },
+                backgroundColor = orange
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -64,17 +63,23 @@ fun OrderScreen(
         },
         topBar = {
             TopAppBar(
-                title = { Text("Order overview", color = white) },
-                Modifier.background(orange)
+                title = {
+                    Text(
+                        "Order overview",
+                        color = white
+                    )
+                },
+                backgroundColor = orange
             )
         }
     ) {
         if (orderViewModel.orderList.isEmpty()) {
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "There are no orders yet")
+                Text("There are no orders yet")
             }
         } else {
             LazyColumn(
