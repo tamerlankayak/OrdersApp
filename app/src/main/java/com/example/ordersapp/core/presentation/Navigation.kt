@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.ordersapp.order_feature.presentation.OrderChooseDelivererScreen
+import com.example.ordersapp.order_feature.presentation.OrderChooseProductScreen
 import com.example.ordersapp.order_feature.presentation.OrderScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -20,6 +21,12 @@ fun Navigation() {
         }
         composable(ScreenRoutes.OrderChooseDelivererScreen.route) {
             OrderChooseDelivererScreen(navController = navController)
+        }
+        composable(ScreenRoutes.OrderChooseProductsScreen.route + "/{delivererId}") {
+            OrderChooseProductScreen(
+                navController = navController,
+                delivererId = it.arguments?.getString("delivererId")
+            )
         }
     }
 }

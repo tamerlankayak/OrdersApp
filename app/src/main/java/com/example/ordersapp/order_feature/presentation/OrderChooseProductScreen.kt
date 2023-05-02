@@ -9,34 +9,46 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PriceCheck
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.ordersapp.core.presentation.ScreenRoutes
-import com.example.ordersapp.order_feature.components.DelivererUiListItem
+import com.example.ordersapp.order_feature.components.ProductUiListItem
 import com.example.ordersapp.ui.theme.gray
 import com.example.ordersapp.ui.theme.orange
 import com.example.ordersapp.ui.theme.white
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun OrderChooseDelivererScreen(
+fun OrderChooseProductScreen(
     navController: NavController,
-    orderChooseDelivererViewModel: OrderChooseDelivererViewModel = hiltViewModel()
+    delivererId: String?,
+    orderChooseProductsViewModel: OrderChooseProductsViewModel = hiltViewModel()
 ) {
+
+    LaunchedEffect(key1 = true) {
+        if (delivererId != null) {
+            orderChooseProductsViewModel.initProductList(delivererId)
+        }
+    }
 
     val scaffoldState = rememberScaffoldState()
 
@@ -45,13 +57,25 @@ fun OrderChooseDelivererScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        "Deliverer selection",
-                        color = white
-                    )
+                    Text(text = "Product Section", color = white)
+                }
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    orderChooseProductsViewModel.onCheckoutClick()
                 },
                 backgroundColor = orange
-            )
+            ) {
+                Icon(
+                    imageVector = Icons.Default.PriceCheck,
+                    contentDescription = "fab_money",
+                    tint = white,
+                    modifier = Modifier
+                        .size(32.dp)
+                )
+            }
         }
     ) {
         Column(
@@ -63,9 +87,9 @@ fun OrderChooseDelivererScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TextField(
-                value = orderChooseDelivererViewModel.delivererSearchQuery,
+                value = orderChooseProductsViewModel.productSearchQuery,
                 onValueChange = {
-                    orderChooseDelivererViewModel.onSearchQueryChange(it)
+                    orderChooseProductsViewModel.onProductSearchQueryChange(it)
                 },
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = white,
@@ -75,7 +99,7 @@ fun OrderChooseDelivererScreen(
                     focusedIndicatorColor = orange
                 ),
                 label = {
-                    Text(text = "Search deliverer")
+                    Text(text = "Search Product")
                 },
                 maxLines = 1
             )
@@ -85,25 +109,31 @@ fun OrderChooseDelivererScreen(
                     .padding(top = 20.dp)
             ) {
                 items(
-                    orderChooseDelivererViewModel.delivererToShow,
-                    key = { delivererListItem ->
-                        delivererListItem.delivererId
+                    orderChooseProductsViewModel.productsToShow,
+                    key = { productListItem ->
+                        productListItem.id
                     }
                 ) {
-                    DelivererUiListItem(
-                        it,
+                    ProductUiListItem(
+                        productListItem = it,
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(10.dp))
                             .border(1.dp, color = white, RoundedCornerShape(10.dp))
                             .clickable {
-                                navController.navigate(ScreenRoutes.OrderChooseProductsScreen.route + "/${it.delivererId}")
+                                orderChooseProductsViewModel.onListItemClick(it.id)
                             }
-                            .padding(15.dp)
+                            .padding(10.dp),
+                        isExpanded = it.isExpanded,
+                        onMinusClick = {
+                            orderChooseProductsViewModel.onMinusClick(it.id)
+                        },
+                        onPlusClick = {
+                            orderChooseProductsViewModel.onPlusClick(it.id)
+                        }
                     )
                 }
             }
         }
     }
-
 }
