@@ -5,7 +5,6 @@ import com.example.ordersapp.core.domain.model.Product
 import com.example.ordersapp.order_feature.domain.model.Order
 
 interface OrderRepository {
-
     suspend fun insertOrder(order: Order)
 
     suspend fun getOrders(): List<Order>

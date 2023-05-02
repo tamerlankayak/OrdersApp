@@ -13,7 +13,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DelivererFeatureModule {
-
     @Provides
     @Singleton
     fun provideDelivererRepository(delivererDao: DelivererDao, productDao: ProductDao): DelivererRepository {
