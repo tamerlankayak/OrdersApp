@@ -1,6 +1,8 @@
 package com.example.ordersapp.order_feature.presentation
 
 import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -31,11 +33,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.ordersapp.core.presentation.ScreenRoutes
+import com.example.ordersapp.order_feature.components.CheckoutDialog
 import com.example.ordersapp.order_feature.components.ProductUiListItem
 import com.example.ordersapp.ui.theme.gray
 import com.example.ordersapp.ui.theme.orange
 import com.example.ordersapp.ui.theme.white
 
+@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun OrderChooseProductScreen(
@@ -135,5 +140,19 @@ fun OrderChooseProductScreen(
                 }
             }
         }
+    }
+    if (orderChooseProductsViewModel.isCheckoutDialogShown) {
+        CheckoutDialog(
+            onDismiss = {
+                orderChooseProductsViewModel.onDismissCheckoutDialog()
+            },
+            onConfirm = {
+                orderChooseProductsViewModel.onBuy()
+                navController.navigate(ScreenRoutes.OrderScreen.route) {
+                    popUpTo(0)
+                }
+            },
+            selectedProducts =orderChooseProductsViewModel.selectedProducts
+        )
     }
 }
