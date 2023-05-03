@@ -6,7 +6,7 @@ import com.example.ordersapp.core.data.local.entities.DelivererEntity
 import com.example.ordersapp.core.data.local.entities.OrderEntity
 import com.example.ordersapp.core.data.local.entities.OrderProductEntity
 import com.example.ordersapp.core.data.local.entities.ProductEntity
-
+//creating database tables
 @Database(
     entities = [
         DelivererEntity::class,

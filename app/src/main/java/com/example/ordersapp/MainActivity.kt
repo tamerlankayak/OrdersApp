@@ -11,6 +11,7 @@ import com.example.ordersapp.ui.theme.OrdersAppTheme
 import com.example.ordersapp.ui.theme.orange
 import dagger.hilt.android.AndroidEntryPoint
 
+//declaring hilt in main activity
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
