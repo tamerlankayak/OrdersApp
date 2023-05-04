@@ -10,6 +10,7 @@ import com.example.ordersapp.order_feature.presentation.OrderChooseDelivererScre
 import com.example.ordersapp.order_feature.presentation.OrderChooseProductScreen
 import com.example.ordersapp.order_feature.presentation.OrderScreen
 
+//navigation between screens
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Navigation() {
