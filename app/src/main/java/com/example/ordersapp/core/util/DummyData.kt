@@ -3,6 +3,7 @@ package com.example.ordersapp.core.util
 import com.example.ordersapp.core.domain.model.Deliverer
 import com.example.ordersapp.core.domain.model.Product
 
+//dummy data
 object DummyData {
 
     val deliverers = listOf(
