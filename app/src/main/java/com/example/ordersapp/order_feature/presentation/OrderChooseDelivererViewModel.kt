@@ -15,6 +15,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+//injection of classes
 @HiltViewModel
 class OrderChooseDelivererViewModel @Inject constructor(
     private val orderRepository: OrderRepository,
