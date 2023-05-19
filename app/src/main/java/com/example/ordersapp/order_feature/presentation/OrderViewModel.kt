@@ -38,7 +38,7 @@ class OrderViewModel @Inject constructor(
 
     var clickedOrderItem by mutableStateOf<OrderDetailListItem?>(null)
         private set
-
+//uncomment fetch code after first launch
     init {
         viewModelScope.launch {
 //            orders = orderRepository.getOrders()
